@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -17,6 +18,8 @@ class LoginController extends Controller
             'password' => 'required',
             'device_name' => 'required',
         ]);
+
+        $credentials = $request->all();
 
         $user = User::where('email', $request->email)->first();
 

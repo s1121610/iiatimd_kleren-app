@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use App\Models\User;
 
 class RegistrationTest extends TestCase
 {
@@ -15,14 +16,14 @@ class RegistrationTest extends TestCase
         $response = $this->post('/api/registration', [
             'name' => 'Constantin Druc',
             'email' => 'druc@pinsmile.com',
-            'password' => 'password',
-            'password_confirmation' => 'password',
-            'device_name' => 'iphone'
+            'password' => 'Password!1234',
+            'password_confirmation' => 'Password!1234',
+            'device_name' => 'iphone2'
         ]);
 
         $response->assertSuccessful();
         $this->assertNotEmpty($response->getContent());
         $this->assertDatabaseHas('users', ['email' => 'druc@pinsmile.com']);
-        $this->assertDatabaseHas('personal_access_tokens', ['name' => 'iphone']);
+        $this->assertDatabaseHas('personal_access_tokens', ['name' => 'iphone2']);
     }
 }
