@@ -3,6 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Auth\RegistrationController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,31 +18,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/registration', [RegistrationController::class, 'register']);
+
+Route::group(['middleware' => ['auth:sanctum']], function ($route) {
+    $route->get('/user', [LoginController::class, 'user']);
+    $route->post('/logout', [LogoutController::class, 'logout']);
+
+    Route::get('clothes', [App\Http\Controllers\ClotheController::class, 'index']);
 });
-
-Route::post('/sanctum/token', function (Request $request) {
-    $request->validate([
-        'email' => 'required|email',
-        'password' => 'required',
-        'device_name' => 'required',
-    ]);
-
-    $user = User::where('email', $request->email)->first();
-
-    if (! $user || ! Hash::check($request->password, $user->password)) {
-        throw ValidationException::withMessages([
-            'email' => ['The provided credentials are incorrect.'],
-        ]);
-    }
-
-    return $user->createToken($request->device_name)->plainTextToken;
-});
-
-Route::get('clothes', [App\Http\Controllers\ClotheController::class, 'index']);
 
