@@ -7,6 +7,9 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegistrationController;
 
+use App\Http\Controllers\ClotheController;
+
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -22,11 +25,12 @@ use App\Http\Controllers\Auth\RegistrationController;
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/registration', [RegistrationController::class, 'register']);
 
+Route::get('/clothes', [ClotheController::class, 'index']);
+
 Route::group(['middleware' => ['auth:sanctum']], function ($route) {
     $route->get('/user', [LoginController::class, 'user']);
     $route->post('/logout', [LogoutController::class, 'logout']);
 
-    Route::get('/clothes', [App\Http\Controllers\ClotheController::class, 'index']);
 });
 
 Route::post('/tokens/create', function (Request $request) {

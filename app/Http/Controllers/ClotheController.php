@@ -14,6 +14,7 @@ class ClotheController extends Controller
      */
     public function index()
     {
+        //echo "hoi";
         return response()->json(Clothe::all());
     }
 
