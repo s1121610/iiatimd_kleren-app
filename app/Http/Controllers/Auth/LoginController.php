@@ -33,9 +33,7 @@ class LoginController extends Controller
         if($user == null){
             return response()->json(['error' => 'Unauthenticated.'], 401);
         }
-
-        //echo $user;
-        
+                
         return $user->createToken($request->device_name)->plainTextToken;
         
     }
