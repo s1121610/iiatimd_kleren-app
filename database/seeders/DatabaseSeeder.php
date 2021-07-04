@@ -29,7 +29,31 @@ class DatabaseSeeder extends Seeder
                 'name' => "kledingstuk" . $i,
                 'spiecies' => Str::random(10),
                 'season' => 'all',
-                'occasion' => Str::random(5)
+                'occasion' => "werken"
+            ]);
+        }
+        for ($i = 0; $i < 6; $i++) {
+            DB::table('clothes')->insert([
+                'name' => "kledingstuk" . $i,
+                'spiecies' => Str::random(10),
+                'season' => 'all',
+                'occasion' => "vrijeTijd"
+            ]);
+        }
+        for ($i = 0; $i < 6; $i++) {
+            DB::table('clothes')->insert([
+                'name' => "kledingstuk" . $i,
+                'spiecies' => Str::random(10),
+                'season' => 'all',
+                'occasion' => "vakantie"
+            ]);
+        }
+        for ($i = 0; $i < 6; $i++) {
+            DB::table('clothes')->insert([
+                'name' => "kledingstuk" . $i,
+                'spiecies' => Str::random(10),
+                'season' => 'all',
+                'occasion' => "uitgaan"
             ]);
         }
     }

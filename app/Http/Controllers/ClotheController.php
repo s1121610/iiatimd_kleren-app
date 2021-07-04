@@ -45,9 +45,9 @@ class ClotheController extends Controller
      * @param  \App\Models\Clothe  $clothe
      * @return \Illuminate\Http\Response
      */
-    public function show(Clothe $clothe)
+    public function show($occasion ,Clothe $clothe)
     {
-        //
+        return response()->json(["Clothes" => Clothe::where("occasion", "=", $occasion)->get()]);
     }
 
     /**
