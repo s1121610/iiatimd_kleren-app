@@ -24,12 +24,19 @@ class LoginController extends Controller
         $user = User::where('email', $request->email)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
-            throw ValidationException::withMessages([
-                'email' => ['The provided credentials are incorrect.'],
-            ]);
+            // throw ValidationException::withMessages([
+            //     'email' => ['The provided credentials are incorrect.'],
+            // ]);
+        }
+        
+        if($user == null){
+            return response()->json(['error' => 'Unauthenticated.'], 401);
         }
 
+        //echo $user;
+        
         return $user->createToken($request->device_name)->plainTextToken;
+        
     }
 
     public function user(Request $request)
