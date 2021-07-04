@@ -27,6 +27,7 @@ class LoginController extends Controller
             // throw ValidationException::withMessages([
             //     'email' => ['The provided credentials are incorrect.'],
             // ]);
+            return response()->json(['error' => 'Unauthenticated.'], 401);
         }
         
         if($user == null){
