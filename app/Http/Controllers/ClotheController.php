@@ -34,9 +34,13 @@ class ClotheController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Clothe $clothes)
     {
-        //
+        $clothes->name = request('name');
+        $clothes->spiecies = request('spiecies');
+        $clothes->season = request('season');
+        $clothes->occasion = request('name');
+        $clothes->save();
     }
 
     /**

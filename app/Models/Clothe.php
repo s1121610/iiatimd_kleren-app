@@ -9,4 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 class Clothe extends Model
 {
     use HasFactory;
+    public $timestamps = false;
+
+    protected $fillable = ['name', 'spiecies', 'season','occasion'];
+
 }

@@ -26,7 +26,7 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::post('/registration', [RegistrationController::class, 'register']);
 
 Route::get('/clothes', [ClotheController::class, 'index']);
-
+Route::post('/clothes', [ClotheController::class, 'store']);
 Route::get('/clothes/{occasion}', [ClotheController::class, 'show']);
 
 Route::group(['middleware' => ['auth:sanctum']], function ($route) {
